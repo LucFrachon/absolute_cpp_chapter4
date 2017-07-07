@@ -1,5 +1,5 @@
 /*
-Programming project 4. Unit conversions 1 (driver program for input, calculation and output)
+Programming project 4. Unit conversions 2 (driver program for input, calculation and output)
 */
 
 // #define NDEBUG
