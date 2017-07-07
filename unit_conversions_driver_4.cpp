@@ -11,11 +11,11 @@ using namespace std;
 
 void input_lb_to_kg(float& pounds, float& ounces);
 //Precondition: pounds >= 0; 16 > ounces >= 0
-//Postcondition: feet and inches received the values specified by the user
+//Postcondition: pounds and ounces received the values specified by the user
 
 void convert_lb_to_kg(float pounds, float ounces, float& kilos, float& grams);
 //Precondition: pounds >= 0; ounces >= 0; kilos >= 0; 1000 > grams >= 0
-//Postcondition: meters and centimeters receive the calculated conversions with centimeters < 100.
+//Postcondition: kilos and grams receive the calculated conversions with grams < 1000.
 
 void output_lb_to_kg(float pounds, float ounces, float kilos, float grams);
 //Precondition: pounds >= 0, 16 > ounces >= 0, kilos >= 0, 1000 > grams >= 0
@@ -56,7 +56,7 @@ void input_lb_to_kg(float& pounds, float& ounces)
 
 void convert_lb_to_kg(float pounds, float ounces, float& kilos, float& grams)
 {
-	grams = 1000 * pounds / KG_TO_LB + ounces * OZ_TO_G;
+	grams = KG_TO_CM * pounds / KG_TO_LB + ounces * OZ_TO_G;
 	kilos = static_cast<int>(grams) / KG_TO_CM;
 	grams -= kilos * KG_TO_CM;
 }
