@@ -90,9 +90,9 @@ int main()
 bool shoot(double hit_prob)
 {
 	double shot_prob = (RAND_MAX - rand()) / static_cast<double>(RAND_MAX);
-	bool result = (shot_prob > hit_prob);
+	bool still_alive = (shot_prob > hit_prob);
 	cout << "Shot score:\t" << shot_prob << endl 
 		<< "Hit probability:\t" << hit_prob << endl 
-		<< "Result:\t" << result << endl;
-	return result;
+		<< "Still alivet" << still_alive << endl;
+	return still_alive;
 }
