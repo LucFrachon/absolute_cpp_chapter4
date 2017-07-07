@@ -1,5 +1,5 @@
 /*
-Programming project 4. Unit conversions 1 (driver program for input, calculation and output)
+Programming project 4. Unit conversions 3 (driver program for input, calculation both ways and output)
 */
 
 // #define NDEBUG
@@ -34,6 +34,19 @@ void output_m_to_ft(float meters, float centimeters, float feet, float inches);
 //Precondition: meters >= 0, 12 > centimeters >= 0, feet >= 0, 100 > inches >= 0
 //Prints the conversion result on screen.
 
+void to_metric();
+//Wrapper function that executes a conversion from ft/in to m/cm.
+//Precondition: feet >= 0; inches >= 0; meters >= 0; 100 > centimeters >= 0
+//Postcondition: meters and centimeters receive the calculated conversions with centimeters < 100. 
+//Prints the conversion result on screen.
+
+void to_imperial();
+//Wrapper function that executes a conversion from m/cm to ft/in.
+//Precondition: feet >= 0; inches >= 0; meters >= 0; 100 > centimeters >= 0
+//Postcondition: feet and inches receive the calculated conversions with inches < 12. 
+//Prints the conversion result on screen.
+
+
 const float FT_TO_CM = 30.48;
 const float	IN_TO_CM = 2.54;
 const float M_TO_CM = 100;
@@ -42,7 +55,23 @@ const int FT_TO_IN = 12;
 
 int main()
 {
+	int ans;
+	float feet, inches, meters, centimeters;
 
+	do
+	{
+		cout << "Enter 1 to convert a distance from imperial to metric\n"
+			<< "Enter 2 to convert a distance from metric to imperial\n"
+			<< "or enter 3 to exit the program.";
+		cin >> ans;
+
+		if (1 == ans)
+			to_metric();
+		else if (2 == ans)
+			to_imperial();
+
+	} while (ans != 3);
+	
 	return 0;
 }
 
@@ -89,4 +118,38 @@ void output_m_to_ft(float meters, float centimeters, float feet, float inches)
 {
 	cout << endl << meters << "m " << centimeters << "cm converts to:\n"
 		<< feet << "ft " << inches << "in\n";
+}
+
+void to_metric()
+{
+	char ans;
+	float feet, inches, meters, centimeters;
+
+	do
+	{
+		input_ft_to_m(feet, inches);
+		assert((feet >= 0) && (12 > inches) && (inches >= 0));
+		convert_ft_to_m(feet, inches, meters, centimeters);
+		output_ft_to_m(feet, inches, meters, centimeters);
+
+		cout << "Would you like to convert another distance in the same direction? (y/n)\t";
+		cin >> ans;
+	} while (('y' == ans) || ('Y' == ans));
+}
+
+void to_imperial()
+{
+	char ans;
+	float feet, inches, meters, centimeters;
+
+	do
+	{
+		input_m_to_ft(meters, centimeters);
+		assert((meters >= 0) && (100 > centimeters) && (centimeters >= 0));
+		convert_m_to_ft(meters, centimeters, feet, inches);
+		output_m_to_ft(meters, centimeters, feet, inches);
+
+		cout << "Would you like to convert another distance in the same direction? (y/n)\t";
+		cin >> ans;
+	} while (('y' == ans) || ('Y' == ans));
 }
