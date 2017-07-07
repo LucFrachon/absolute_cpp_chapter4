@@ -34,15 +34,13 @@ void output_m_to_ft(float meters, float centimeters, float feet, float inches);
 //Precondition: meters >= 0, 12 > centimeters >= 0, feet >= 0, 100 > inches >= 0
 //Prints the conversion result on screen.
 
-void to_metric();
+void distance_to_metric();
 //Wrapper function that executes a conversion from ft/in to m/cm.
-//Precondition: feet >= 0; inches >= 0; meters >= 0; 100 > centimeters >= 0
 //Postcondition: meters and centimeters receive the calculated conversions with centimeters < 100. 
 //Prints the conversion result on screen.
 
-void to_imperial();
+void distance_to_imperial();
 //Wrapper function that executes a conversion from m/cm to ft/in.
-//Precondition: feet >= 0; inches >= 0; meters >= 0; 100 > centimeters >= 0
 //Postcondition: feet and inches receive the calculated conversions with inches < 12. 
 //Prints the conversion result on screen.
 
@@ -56,7 +54,6 @@ const int FT_TO_IN = 12;
 int main()
 {
 	int ans;
-	float feet, inches, meters, centimeters;
 
 	do
 	{
@@ -66,9 +63,9 @@ int main()
 		cin >> ans;
 
 		if (1 == ans)
-			to_metric();
+			distance_to_metric();
 		else if (2 == ans)
-			to_imperial();
+			distance_to_imperial();
 
 	} while (ans != 3);
 	
@@ -120,7 +117,7 @@ void output_m_to_ft(float meters, float centimeters, float feet, float inches)
 		<< feet << "ft " << inches << "in\n";
 }
 
-void to_metric()
+void distance_to_metric()
 {
 	char ans;
 	float feet, inches, meters, centimeters;
@@ -137,7 +134,7 @@ void to_metric()
 	} while (('y' == ans) || ('Y' == ans));
 }
 
-void to_imperial()
+void distance_to_imperial()
 {
 	char ans;
 	float feet, inches, meters, centimeters;
